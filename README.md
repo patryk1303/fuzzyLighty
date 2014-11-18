@@ -1,0 +1,4 @@
+fuzzyLighty
+===========
+
+Project for AI
