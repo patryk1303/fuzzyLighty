@@ -8,6 +8,7 @@ import flixel.text.FlxText;
 import flixel.ui.FlxButton;
 import flixel.text.FlxText;
 import flixel.util.FlxMath;
+import pl.patryk1303.fuzzyLighty.road.Road;
 
 /**
  * A FlxState which can be used for the game's menu.
@@ -15,21 +16,25 @@ import flixel.util.FlxMath;
 class MenuState extends FlxState {
 	
 	public var lights:Array<Lights> = new Array<Lights>();
+	public var road:Road;
 	public var txt:FlxText;
 	
 	override public function create():Void {
 		txt = new FlxText();
-		lights.push(new Lights());
-		lights.push(new Lights(148, 16, ORANGE));
-		lights.push(new Lights(280, 16, RED_ORANGE));
+		road  = new Road(150, 150);
+		lights.push(new Lights(road.x + 190 - 150, road.y + 108 - 150));
+		lights.push(new Lights(road.x + 108 - 150, road.y + 108 - 150, 90, ORANGE));
+		lights.push(new Lights(road.x + 92 - 150, road.y + 210 - 150, 180, RED_ORANGE));
 		for (light in lights) {
 			
 			for (i in 0...light.lightTimes.length) {
 				light.lightTimes[i] += Std.random(300);
 			}
+			light.scale.set(0.1, 0.1);
 			add(light);
 		}
 		add(txt);
+		add(road);
 		super.create();
 	}
 	
@@ -41,7 +46,7 @@ class MenuState extends FlxState {
 	 * Function that is called once every frame.
 	 */
 	override public function update():Void {
-		txt.text = "State: " + lights[0].currentState + "\nster: " + lights[0].ster;
+		//txt.text = "State: " + lights[0].currentState + "\nster: " + lights[0].ster;
 		
 		super.update();
 		/*for (light in lights) {

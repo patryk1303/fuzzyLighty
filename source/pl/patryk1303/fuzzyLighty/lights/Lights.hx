@@ -18,7 +18,7 @@ class Lights extends FlxSprite {
 	//[orange,red,red-orange,green]
 	public var lightTimes = [100, 300, 100, 300];
 
-	public function new(x:Float = 16, y:Float = 16, ?state:LightStates) {
+	public function new(x:Float = 16, y:Float = 16, ?rotate = 0, ?state:LightStates) {
 		super(x, y);
 		ster = lightTimes[0];
 		if (state == null)
@@ -32,6 +32,7 @@ class Lights extends FlxSprite {
 		animation.add("redorange", [3], 0, false);
 		width = 128;
 		height = 256;
+		this.angle = rotate;
 	}
 	
 	public override function draw() {
