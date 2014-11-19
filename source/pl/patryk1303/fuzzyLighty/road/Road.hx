@@ -18,7 +18,7 @@ class Road extends FlxSprite {
 		loadGraphic(AssetPaths.road__png, false, 640, 480);
 		originPoints = [[330, 480, CarDirection.UP], [290, 0, CarDirection.DOWN], [0, 245, CarDirection.RIGHT], [640, 200, CarDirection.LEFT]]; //bottom, top, left, right
 		lightPoints = [[370, 290, 0], [230, 290, 90], [255, 150, 180], [370, 150, 270]]; //bottom, left, top, right
-		stopAreaPoints = [[320, 338-55], [222, 277-40], [283, 202-65], [358, 240-40]]; //bottom, left, top, right
+		stopAreaPoints = [[320, 338-55], [222 + 11, 277-40], [283, 202-40], [358 + 11, 240-40]]; //bottom, left, top, right
 	}
 	
 	public override function draw() {

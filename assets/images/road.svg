@@ -28,20 +28,22 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.2680781"
-     inkscape:cx="197.82854"
-     inkscape:cy="344.86999"
+     inkscape:zoom="2.5361562"
+     inkscape:cx="308.39909"
+     inkscape:cy="253.28534"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1366"
-     inkscape:window-height="705"
-     inkscape:window-x="-8"
-     inkscape:window-y="-8"
-     inkscape:window-maximized="1"
-     inkscape:snap-intersection-paths="false"
+     inkscape:window-width="888"
+     inkscape:window-height="403"
+     inkscape:window-x="130"
+     inkscape:window-y="130"
+     inkscape:window-maximized="0"
+     inkscape:snap-intersection-paths="true"
      inkscape:snap-smooth-nodes="true"
-     inkscape:snap-midpoints="true">
+     inkscape:snap-midpoints="true"
+     inkscape:object-nodes="true"
+     inkscape:object-paths="false">
     <inkscape:grid
        type="xygrid"
        id="grid4137" />
@@ -88,5 +90,43 @@
        id="path4154"
        d="m 0,812.3622 640,0"
        style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:2.92118692;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:11.6847475, 2.92118688;stroke-dashoffset:0;stroke-opacity:1" />
+    <rect
+       style="fill:#ffff00;fill-opacity:1;stroke:none;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:8, 2;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect3341"
+       width="37.5"
+       height="60.676273"
+       x="320"
+       y="849.86218"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       inkscape:export-ydpi="90"
+       inkscape:export-xdpi="90"
+       y="-418.17627"
+       x="774.86218"
+       height="60.676273"
+       width="37.5"
+       id="rect3343"
+       style="fill:#ffff00;fill-opacity:1;stroke:none;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:8, 2;stroke-dashoffset:0;stroke-opacity:1"
+       transform="matrix(0,1,-1,0,0,0)" />
+    <rect
+       transform="matrix(0,1,-1,0,0,0)"
+       style="fill:#ffff00;fill-opacity:1;stroke:none;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:8, 2;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect3345"
+       width="37.5"
+       height="60.676273"
+       x="812.36218"
+       y="-282.5"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       inkscape:export-ydpi="90"
+       inkscape:export-xdpi="90"
+       y="714.18591"
+       x="282.5"
+       height="60.676273"
+       width="37.5"
+       id="rect3347"
+       style="fill:#ffff00;fill-opacity:1;stroke:none;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:8, 2;stroke-dashoffset:0;stroke-opacity:1" />
   </g>
 </svg>

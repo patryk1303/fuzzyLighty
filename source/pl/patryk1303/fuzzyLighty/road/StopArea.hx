@@ -10,7 +10,7 @@ class StopArea extends FlxSprite
 {
 
 	private var siz1 = 38;
-	private var siz2 = 61;
+	private var siz2 = 12;
 	
 	public function new(X:Float=0, Y:Float=0, _isHor:Bool)
 	{
