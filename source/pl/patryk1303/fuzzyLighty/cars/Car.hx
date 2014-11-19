@@ -11,11 +11,13 @@ class Car extends FlxSprite
 {
 	public var direction:CarDirection;
 	var mA:Float = 0;
-	var speed:Float = 100;
+	var maxSpeed:Float = 80;
+	var speed:Float;
 	
 	public function new(?X:Float = 0, ?Y:Float = 0, ?_dir:CarDirection, ?_color:Int) 
 	{
 		super(X, Y);
+		speed = maxSpeed;
 		if (_dir == null)
 			direction = CarDirection.UP;
 		else
@@ -47,14 +49,14 @@ class Car extends FlxSprite
 		speed = 0;
 	}
 	public function start() {
-		speed = 100;
+		speed = maxSpeed;
 	}
 	public function orange_stopping() {
-		while (speed >= 50)
+		while (speed >= maxSpeed/2)
 			speed--;
 	}
 	public function orange_starting() {
-		while (speed <= 50)
+		while (speed <= maxSpeed/2)
 			speed++;
 	}
 }
