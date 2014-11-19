@@ -107,6 +107,7 @@ class MenuState extends FlxState {
 		
 		for (car in cars) {
 			FlxG.overlap(car, stopAreas, carCheckStop);
+			//FlxG.collide(car, stopAreas, carCheckStop);
 		}
 		
 		for (car in cars) {
@@ -117,7 +118,8 @@ class MenuState extends FlxState {
 	}
 	
 	private function carCheckStop(C:Car, S:StopArea) {
-		if (C.alive && C.exists) {
+		C.touchedStoper = true;
+		if (C.alive && C.exists && C.touchedStoper) {
 			switch(C.direction) {
 				case UP:	checkLightForCar(C, 0);
 				case RIGHT:	checkLightForCar(C, 1);
@@ -125,6 +127,7 @@ class MenuState extends FlxState {
 				case LEFT:	checkLightForCar(C, 3);
 			}
 		}
+		C.touchedStoper = false;
 	}
 	
 	private function checkLightForCar(C:Car, id:Int) {
