@@ -10,13 +10,13 @@ import flixel.FlxG;
  */
 class Lights extends FlxSprite {
 	
-	public var currentState:LightStates = GREEN;
-	private var sterVal:Int = 10;
+	public var currentState:LightStates  = GREEN;
+	private var sterVal:Int  = 10;
 	public var ster:Int = 10;
 	public var isSter:Bool = false;
 	
 	//[orange,red,red-orange,green]
-	public var lightTimes = [100, 300, 100, 300];
+	public var lightTimes = [100, 700, 100, 700];
 
 	public function new(x:Float = 16, y:Float = 16, ?rotate = 0, ?state:LightStates) {
 		super(x, y);
