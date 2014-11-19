@@ -13,7 +13,7 @@ class Car extends FlxSprite
 	var mA:Float = 0;
 	var speed:Float = 100;
 	
-	public function new(?X:Float = 0, ?Y:Float = 0, ?_dir:CarDirection) 
+	public function new(?X:Float = 0, ?Y:Float = 0, ?_dir:CarDirection, ?_color:Int) 
 	{
 		super(X, Y);
 		if (_dir == null)
@@ -21,6 +21,8 @@ class Car extends FlxSprite
 		else
 			direction = _dir;
 		loadGraphic(AssetPaths.CarBlue__png, false, 82, 123);
+		if (_color == 1)
+			loadGraphic(AssetPaths.CarRed__png, false, 82, 123);
 		drag.x = drag.y = 50;
 	}
 	

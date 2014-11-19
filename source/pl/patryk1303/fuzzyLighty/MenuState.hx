@@ -27,9 +27,9 @@ class MenuState extends FlxState {
 	override public function create():Void {
 		txt = new FlxText();
 		//add(cross);
-		road  = new Road(150, 150);
+		road  = new Road(20,20);
 		road.updateHitbox();
-		originPoints.push([road.x + 158, road.y + 400]);
+		originPoints.push([road.x + 158, road.y + 300]);
 		lights.push(new Lights(road.x + 195, road.y + 200));
 		lights.push(new Lights(road.x + 70, road.y + 200, 90, RED));
 		lights.push(new Lights(road.x + 200, road.y + 70, 270, RED));
@@ -38,6 +38,7 @@ class MenuState extends FlxState {
 		var tmpY = originPoints[0][1];
 		
 		cars.push(new Car(tmpX, tmpY));
+		cars.push(new Car(road.x + 400, road.y + 100, LEFT, 1));
 		add(road);
 		for (light in lights) {
 			
@@ -66,20 +67,15 @@ class MenuState extends FlxState {
 	 * Function that is called once every frame.
 	 */
 	override public function update():Void {
-		//txt.text = "State: " + lights[0].currentState + "\nster: " + lights[0].ster;
-		
 		if (lights[0].currentState == RED)
 			cars[0].stop();
-		else
+		else if(lights[0].currentState == GREEN)
 			cars[0].start();
 		
 		for (car in cars) {
-			car.update();
+			if (!(car.inWorldBounds()))
+				car.kill();
 		}
 		super.update();
-		
-		/*for (light in lights) {
-			light.update();
-		}*/
 	}
 }
