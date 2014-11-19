@@ -11,6 +11,8 @@ import flixel.text.FlxText;
 import flixel.util.FlxMath;
 import pl.patryk1303.fuzzyLighty.road.Road;
 import pl.patryk1303.fuzzyLighty.cars.Car;
+import source.pl.patryk1303.fuzzyLighty.enums.LightStates;
+import pl.patryk1303.fuzzyLighty.enums.CarDirection;
 
 /**
  * A FlxState which can be used for the game's menu.
@@ -20,25 +22,25 @@ class MenuState extends FlxState {
 	public var lights:Array<Lights> = new Array<Lights>();
 	public var cars = new Array<Car>();
 	public var road:Road;
-	public var cross:Crossing = new Crossing();
 	public var txt:FlxText;
-	public var originPoints = new Array<Array<Float>>();
 	
 	override public function create():Void {
 		txt = new FlxText();
 		//add(cross);
-		road  = new Road(20,20);
+		road  = new Road(0,0);
 		road.updateHitbox();
-		originPoints.push([road.x + 158, road.y + 300]);
-		lights.push(new Lights(road.x + 195, road.y + 200));
-		lights.push(new Lights(road.x + 70, road.y + 200, 90, RED));
-		lights.push(new Lights(road.x + 200, road.y + 70, 270, RED));
-		lights.push(new Lights(road.x + 92, road.y + 70, 180));
-		var tmpX = originPoints[0][0];
-		var tmpY = originPoints[0][1];
+		var i = 0;
+		for (point in road.lightPoints) {
+			var start = LightStates.GREEN;
+			if (i % 2 != 0) start = LightStates.RED; 
+			lights.push(new Lights(road.x + point[0], road.y + point[1], point[2], start));
+			++i;
+		}
+		cars.push(new Car(road.x + road.originPoints[0][0], road.y + road.originPoints[0][1], road.originPoints[0][2], 1));
+		cars.push(new Car(road.x + road.originPoints[1][0], road.y + road.originPoints[1][1], road.originPoints[1][2]));
+		cars.push(new Car(road.x + road.originPoints[2][0], road.y + road.originPoints[2][1], road.originPoints[2][2]));
+		cars.push(new Car(road.x + road.originPoints[3][0], road.y + road.originPoints[3][1], road.originPoints[3][2], 1));
 		
-		cars.push(new Car(tmpX, tmpY));
-		cars.push(new Car(road.x + 400, road.y + 100, LEFT, 1));
 		add(road);
 		for (light in lights) {
 			
@@ -54,7 +56,6 @@ class MenuState extends FlxState {
 			car.updateHitbox();
 			add(car);
 		}
-		//add(txt);
 		
 		super.create();
 	}
@@ -69,8 +70,12 @@ class MenuState extends FlxState {
 	override public function update():Void {
 		if (lights[0].currentState == RED)
 			cars[0].stop();
+		if (lights[0].currentState == ORANGE)
+			cars[0].orange_stopping();
 		else if(lights[0].currentState == GREEN)
 			cars[0].start();
+		else if(lights[0].currentState == RED_ORANGE)
+			cars[0].orange_starting();
 		
 		for (car in cars) {
 			if (!(car.inWorldBounds()))

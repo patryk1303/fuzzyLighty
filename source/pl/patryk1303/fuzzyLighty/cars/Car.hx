@@ -49,4 +49,12 @@ class Car extends FlxSprite
 	public function start() {
 		speed = 100;
 	}
+	public function orange_stopping() {
+		while (speed >= 50)
+			speed--;
+	}
+	public function orange_starting() {
+		while (speed <= 50)
+			speed++;
+	}
 }

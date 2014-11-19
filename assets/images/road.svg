@@ -9,12 +9,12 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="300"
-   height="300"
+   width="640"
+   height="480"
    id="svg2"
    version="1.1"
    inkscape:version="0.91pre2 r13516"
-   viewBox="0 0 300 300"
+   viewBox="0 0 640 480"
    sodipodi:docname="road.svg"
    inkscape:export-filename="E:\_Dokumenty_Patryk_1\GitHub\fuzzyLighty\assets\images\road.png"
    inkscape:export-xdpi="90"
@@ -28,9 +28,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.979899"
-     inkscape:cx="137.80862"
-     inkscape:cy="194.9922"
+     inkscape:zoom="1.2680781"
+     inkscape:cx="197.82854"
+     inkscape:cy="344.86999"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -62,31 +62,31 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(0,-752.3622)">
+     transform="translate(0,-572.3622)">
     <rect
        style="fill:#1a1a1a;fill-opacity:1;stroke:none;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none"
        id="rect4139"
-       width="300"
+       width="640"
        height="75"
        x="0"
-       y="864.86218" />
+       y="774.86218" />
     <rect
-       y="-187.5"
-       x="752.36218"
+       y="-357.5"
+       x="572.36218"
        height="75"
-       width="300"
+       width="480"
        id="rect4141"
        style="fill:#1a1a1a;fill-opacity:1;stroke:none;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none"
        transform="matrix(0,1,-1,0,0,0)" />
     <path
-       style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:8,2;stroke-dashoffset:0"
-       d="m 150,1052.3622 0,-300.00002"
+       style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:2.52982211;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:10.11928818, 2.52982204;stroke-dashoffset:0;stroke-opacity:1"
+       d="m 320,1052.3622 0,-480"
        id="path4152"
        inkscape:connector-curvature="0" />
     <path
        inkscape:connector-curvature="0"
        id="path4154"
-       d="m -1e-5,902.36219 300.00002,0"
-       style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:8, 2;stroke-dashoffset:0;stroke-opacity:1" />
+       d="m 0,812.3622 640,0"
+       style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:2.92118692;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:11.6847475, 2.92118688;stroke-dashoffset:0;stroke-opacity:1" />
   </g>
 </svg>

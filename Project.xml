@@ -31,6 +31,7 @@
 	<classpath name="source" />
 	<assets path="assets" />
 	
+	<set name="no-custom-backend" />
 	<!--------------------------------LIBRARIES------------------------------------->
 
 	<haxelib name="flixel"/>

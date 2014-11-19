@@ -1,6 +1,5 @@
 package pl.patryk1303.fuzzyLighty;
-import flixel.group.FlxGroup;
-import flixel.group.FlxTypedGroup;
+import flixel.group.FlxSpriteGroup;
 import pl.patryk1303.fuzzyLighty.lights.Lights;
 import pl.patryk1303.fuzzyLighty.road.Road;
 import flixel.FlxSprite;
@@ -10,7 +9,7 @@ using flixel.util.FlxSpriteUtil;
  * ...
  * @author ...
  */
-class Crossing extends FlxTypedGroup<FlxSprite>
+class Crossing extends FlxSpriteGroup
 {
 	public var light1:Lights = new Lights(0,16);
 	public var light2:Lights = new Lights(16,16);
