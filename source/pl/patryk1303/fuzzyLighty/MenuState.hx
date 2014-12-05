@@ -1,6 +1,7 @@
 package pl.patryk1303.fuzzyLighty;
 
 import flixel.addons.ui.AnchorPoint;
+import flixel.group.FlxGroup;
 import flixel.group.FlxTypedGroup;
 import flixel.FlxG;
 import flixel.FlxSprite;
@@ -29,10 +30,14 @@ class MenuState extends FlxState {
 	public var road:Road;
 	public var txt:FlxText;
 	private var carTimer:Int;
-	private var timer_min:Int = 20;
-	private var timer_max:Int = 300;
+	private var timer_min:Int = 10;
+	private var timer_max:Int = 200;
+	
+	private var carCount = [0, 0, 0, 0];
+	//private var cars:FlxGroup;
 	
 	override public function create():Void {
+		//cars = new FlxGroup();
 		FlxG.camera.bgColor = 0xFF00CE00;
 		carTimer = Utils.getRandom(timer_min, timer_max);
 		txt = new FlxText();
@@ -107,14 +112,40 @@ class MenuState extends FlxState {
 		
 		for (car in cars) {
 			FlxG.overlap(car, stopAreas, carCheckStop);
-			//FlxG.collide(car, stopAreas, carCheckStop);
-		}
-		
-		for (car in cars) {
-			if (!(car.inWorldBounds()))
+			FlxG.collide(cars, car, carCarCheck);
+			//FlxG.collide(car, stopAreas, carCheckStop)
+			if (!(car.inWorldBounds())) {
 				car.destroy();
+				updateCarCount(car);
+			}
 		}
 		super.update();
+	}
+	
+	function updateCarCount(car:Car) {
+		if(car.alive && car.exists) {
+			switch(car.direction) {
+				case UP:	carCount[0]--;
+				case DOWN:	carCount[1]--;
+				case RIGHT:	carCount[2]--;
+				case LEFT:	carCount[3]--;
+			}
+			trace(carCount);
+		}
+	}
+	
+	function carCarCheck(c:Car,car:Car) {
+		if (c.direction == car.direction) {
+			c.stop();
+		}
+		if (c.alive && c.exists && car.alive && car.exists) {
+			switch(car.direction) {
+				case UP:	checkLightForCar(car, 0);
+				case RIGHT:	checkLightForCar(car, 1);
+				case DOWN:	checkLightForCar(car, 2);
+				case LEFT:	checkLightForCar(car, 3);
+			}
+		}
 	}
 	
 	private function carCheckStop(C:Car, S:StopArea) {
@@ -147,10 +178,15 @@ class MenuState extends FlxState {
 	function emmitCar(_dir:CarDirection) {
 		switch(_dir) {
 			case UP:	cars.add(new Car(road.x + road.originPoints[0][0], road.y + road.originPoints[0][1], road.originPoints[0][2], 1));
+						carCount[0]++;
 			case DOWN:	cars.add(new Car(road.x + road.originPoints[1][0], road.y + road.originPoints[1][1], road.originPoints[1][2]));
+						carCount[1]++;
 			case RIGHT:	cars.add(new Car(road.x + road.originPoints[2][0], road.y + road.originPoints[2][1], road.originPoints[2][2]));
+						carCount[2]++;
 			case LEFT:	cars.add(new Car(road.x + road.originPoints[3][0], road.y + road.originPoints[3][1], road.originPoints[3][2], 1));
+						carCount[3]++;
 		}
+		trace(carCount);
 		add(cars);
 		trace("EMMIT: " + _dir + " Cars: " + cars.length);
 	}
