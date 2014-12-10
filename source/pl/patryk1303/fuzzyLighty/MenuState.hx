@@ -33,11 +33,14 @@ class MenuState extends FlxState {
 	private var timer_min:Int = 10;
 	private var timer_max:Int = 200;
 	
+	private var fuzzy:FuzzyDriver = new FuzzyDriver();
+	
 	private var carCount = [0, 0, 0, 0];
 	//private var cars:FlxGroup;
 	
 	override public function create():Void {
 		//cars = new FlxGroup();
+		fuzzy.testFuzzy();
 		FlxG.camera.bgColor = 0xFF00CE00;
 		carTimer = Utils.getRandom(timer_min, timer_max);
 		txt = new FlxText();
@@ -186,7 +189,9 @@ class MenuState extends FlxState {
 			case LEFT:	cars.add(new Car(road.x + road.originPoints[3][0], road.y + road.originPoints[3][1], road.originPoints[3][2], 1));
 						carCount[3]++;
 		}
+		#if debug
 		trace(carCount);
+		#end
 		add(cars);
 		trace("EMMIT: " + _dir + " Cars: " + cars.length);
 	}
