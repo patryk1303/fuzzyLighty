@@ -86,7 +86,9 @@ class MenuState extends FlxState {
 			add(stopPoint);
 		}
 		add(emmiters);
+		#if debug
 		add(txt);
+		#end
 		super.create();
 	}
 	
