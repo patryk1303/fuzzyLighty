@@ -11,6 +11,11 @@ class FuzzyDriver
 	private var zbiorX2:Array<Array<Float>> = new Array<Array<Float>>();
 	private var zbiorY1:Array<Array<Float>> = new Array<Array<Float>>();
 	private var zbiorY2:Array<Array<Float>> = new Array<Array<Float>>();*/
+	private var zbiorSamUlGlowna:Array<Dynamic> = new Array<Dynamic>();
+	private var zbiorSamUlPob:Array<Dynamic> = new Array<Dynamic>();
+	private var zbiorCzas:Array<Dynamic> = new Array<Dynamic>();
+	
+	
 	
 	private var zbiorX1:Array<Dynamic> = new Array<Dynamic>();
 	private var zbiorX2:Array<Dynamic> = new Array<Dynamic>();
@@ -19,7 +24,105 @@ class FuzzyDriver
 	
 	public function new() 
 	{
+		zbiorSamUlGlowna = initZbior(4, zbiorSamUlGlowna);
+		zbiorSamUlPob = initZbior(4, zbiorSamUlPob);
+		zbiorCzas = initZbior(4, zbiorCzas);
 		
+		//zbior sam ul glo
+		for (i in 0...14) {
+			var tM:Float = 0;
+			var tS:Float = 0;
+			var tD:Float = 0;
+			if (i >= 0 && i <= 3)
+				tM = 1;
+			else if (i >= 4 && i <= 6)
+				tM = (6 - i) / 3;
+				
+			if (i >= 4 && i <= 6)
+				tS = (i - 4) / 2;
+			else if (i >= 6 && i <= 7)
+				tS = 1;
+			else if (i >= 7 && i <= 9)
+				tS = (9 - i) / 2;
+				
+			if (i >= 8 && i <= 10)
+				tD = (i - 8) / 2;
+			else if (i >= 10)
+				tD = 1;
+			
+			zbiorSamUlGlowna[0].push(i);
+			zbiorSamUlGlowna[1].push(tM);
+			zbiorSamUlGlowna[2].push(tS);
+			zbiorSamUlGlowna[3].push(tD);
+		}
+		trace("AA:"+zbiorSamUlGlowna[0]);
+		trace("AA:"+zbiorSamUlGlowna[1]);
+		trace("AA:"+zbiorSamUlGlowna[2]);
+		trace("AA:"+zbiorSamUlGlowna[3]);
+		
+		//zbior sam ul pob
+		for (i in 0...14) {
+			var tM:Float = 0;
+			var tS:Float = 0;
+			var tD:Float = 0;
+			if (i >= 0 && i <= 1)
+				tM = 1;
+			else if (i >= 1 && i <= 3)
+				tM = (3 - i) / 2;
+				
+			if (i >= 2 && i <= 4)
+				tS = (i - 2) / 2;
+			else if (i >= 4 && i <= 6)
+				tS = 1;
+			else if (i >= 6 && i <= 8)
+				tS = (8 - i) / 2;
+				
+			if (i >= 6 && i <= 9)
+				tD = (i - 6) / 3;
+			else if (i >= 9)
+				tD = 1;
+			
+			zbiorSamUlPob[0].push(i);
+			zbiorSamUlPob[1].push(tM);
+			zbiorSamUlPob[2].push(tS);
+			zbiorSamUlPob[3].push(tD);
+		}
+		trace("BB:"+zbiorSamUlPob[0]);
+		trace("BB:"+zbiorSamUlPob[1]);
+		trace("BB:"+zbiorSamUlPob[2]);
+		trace("BB:"+zbiorSamUlPob[3]);
+		
+		//zbior czas
+		for (i in 0...31) {
+			var tM:Float = 0;
+			var tS:Float = 0;
+			var tD:Float = 0;
+			if (i >= 0 && i <= 8)
+				tM = 1;
+			else if (i >= 8 && i <= 12)
+				tM = (12 - i) / 4;
+				
+			if (i >= 8 && i <= 14)
+				tS = (i - 8) / 6;
+			else if (i >= 14 && i <= 22)
+				tS = 1;
+			else if (i >= 22 && i <= 26)
+				tS = (26 - i) / 4;
+				
+			if (i >= 22 && i <= 26)
+				tD = (i - 22) / 4;
+			else if (i >= 26)
+				tD = 1;
+			
+			zbiorCzas[0].push(i);
+			zbiorCzas[1].push(tM);
+			zbiorCzas[2].push(tS);
+			zbiorCzas[3].push(tD);
+		}
+		trace("CC:"+zbiorCzas[0]);
+		trace("CC:"+zbiorCzas[1]);
+		trace("CC:"+zbiorCzas[2]);
+		trace("CC:"+zbiorCzas[3]);
 	}
 	
 	/**
@@ -210,7 +313,7 @@ class FuzzyDriver
 			zbiorY1[0].push(i);
 			zbiorY1[1].push(y);
 		}
-		trace(zbiorY1);
+		//trace(zbiorY1);
 		
 	}
 	
@@ -218,7 +321,7 @@ class FuzzyDriver
 		for (i in 0...xCount) {
 			zbior.push(new Array<Dynamic>());
 		}
-		trace(zbior);
+		//trace(zbior);
 		return zbior;
 	}
 	
