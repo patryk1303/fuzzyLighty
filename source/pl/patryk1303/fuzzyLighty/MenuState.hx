@@ -31,7 +31,7 @@ class MenuState extends FlxState {
 	public var txt:FlxText;
 	private var carTimer:Int;
 	private var timer_min:Int = 10;
-	private var timer_max:Int = 92;
+	private var timer_max:Int = 155;
 	
 	private var fuzzy:FuzzyDriver = new FuzzyDriver();
 	
@@ -116,7 +116,7 @@ class MenuState extends FlxState {
 		
 		for (car in cars) {
 			FlxG.overlap(car, stopAreas, carCheckStop);
-			//FlxG.collide(cars, car, carCarCheck);
+			FlxG.collide(cars, car, carCarCheck);
 			//FlxG.collide(car, stopAreas, carCheckStop)
 			if (!(car.inWorldBounds())) {
 				//car.destroy();
@@ -198,6 +198,6 @@ class MenuState extends FlxState {
 		trace(carCount);
 		#end
 		add(cars);
-		trace("EMMIT: " + _dir + " Cars: " + cars.length);
+		//trace("EMMIT: " + _dir + " Cars: " + cars.length);
 	}
 }
