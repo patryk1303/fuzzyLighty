@@ -16,7 +16,7 @@ class Lights extends FlxSprite {
 	public var isSter:Bool = false;
 	
 	//[orange,red,red-orange,green]
-	public var lightTimes = [100, 300, 100, 300];
+	public var lightTimes = [100, 600, 100, 300];
 
 	public function new(x:Float = 16, y:Float = 16, ?rotate = 0, ?state:LightStates) {
 		super(x, y);

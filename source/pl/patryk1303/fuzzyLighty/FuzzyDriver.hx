@@ -6,16 +6,9 @@ package pl.patryk1303.fuzzyLighty;
  */
 class FuzzyDriver
 {
-
-	/*private var zbiorX1:Array<Array<Float>> = new Array<Array<Float>>();
-	private var zbiorX2:Array<Array<Float>> = new Array<Array<Float>>();
-	private var zbiorY1:Array<Array<Float>> = new Array<Array<Float>>();
-	private var zbiorY2:Array<Array<Float>> = new Array<Array<Float>>();*/
 	private var zbiorSamUlGlowna:Array<Dynamic> = new Array<Dynamic>();
 	private var zbiorSamUlPob:Array<Dynamic> = new Array<Dynamic>();
 	private var zbiorCzas:Array<Dynamic> = new Array<Dynamic>();
-	
-	
 	
 	private var zbiorX1:Array<Dynamic> = new Array<Dynamic>();
 	private var zbiorX2:Array<Dynamic> = new Array<Dynamic>();
@@ -123,6 +116,62 @@ class FuzzyDriver
 		trace("CC:"+zbiorCzas[1]);
 		trace("CC:"+zbiorCzas[2]);
 		trace("CC:"+zbiorCzas[3]);
+	}
+	
+	public function fuzzy(carsPrimary:Int, carsSecondary:Int) {
+		if (carsPrimary > 13)
+			carsPrimary = 13;
+		else if (carsPrimary < 0)
+			carsPrimary = 0;
+		if (carsSecondary > 13)
+			carsSecondary = 13;
+		else if (carsSecondary < 0)
+			carsSecondary = 0;
+		var uCPm = zbiorSamUlGlowna[1][carsPrimary];
+		var uCPs = zbiorSamUlGlowna[2][carsPrimary];
+		var uCPd = zbiorSamUlGlowna[3][carsPrimary];
+		var uCSm = zbiorSamUlPob[1][carsSecondary];
+		var uCSs = zbiorSamUlPob[2][carsSecondary];
+		var uCSd = zbiorSamUlPob[3][carsSecondary];
+		var ULi:Array<Dynamic> = new Array<Dynamic>();
+		var t:Dynamic;
+		var uK, uS, uD:Dynamic;
+		var uKred, uSred, uDred:Dynamic;
+		
+		//baza wnioskow
+		ULi.push(fuzzySNorm(uCPm,uCSm));
+		ULi.push(fuzzySNorm(uCPm,uCSs));
+		ULi.push(fuzzySNorm(uCPm,uCSd));
+		ULi.push(fuzzySNorm(uCPs,uCSm));
+		ULi.push(fuzzySNorm(uCPs,uCSs));
+		ULi.push(fuzzySNorm(uCPs,uCSd));
+		ULi.push(fuzzySNorm(uCPd,uCSm));
+		ULi.push(fuzzySNorm(uCPd,uCSs));
+		ULi.push(fuzzySNorm(uCPd,uCSd));
+		
+		//swiatla zielone
+		uK = ULi[0];
+		uS = Math.max(Math.max(Math.max(Math.max(ULi[1], ULi[2]), ULi[3]), ULi[4]), ULi[5]);
+		uD = Math.max(Math.max(ULi[6], ULi[7]), ULi[8]);
+		//swiatla czerwone
+		uKred = Math.max(ULi[2], ULi[6]);
+		uSred = Math.max(Math.max(Math.max(Math.max(Math.max(ULi[0], ULi[3]), ULi[4]), ULi[5]), ULi[7]),ULi[8]);
+		uDred = ULi[1];
+		
+		trace("GREEN: " + uK + " " + uS + " " + uD);
+		trace("RED:   " + uKred + " " + uSred + " " + uDred);
+	}//1600??
+	
+	private function defuzzy() {
+		//TODO DZISIAJ!!!!!!!!!!!!!!!!!!!!!!!1111111111111111111oneoneoneoneoneoenoneoneo
+	}
+	
+	private function fuzzySNorm(v1:Dynamic, v2:Dynamic) {
+		var t:Dynamic = 0;
+		if (v1 > 0 && v2 > 0) {
+			t = v1 * v2;
+ 		}
+		return t;
 	}
 	
 	/**

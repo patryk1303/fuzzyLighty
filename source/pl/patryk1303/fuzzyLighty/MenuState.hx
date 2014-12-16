@@ -31,16 +31,15 @@ class MenuState extends FlxState {
 	public var txt:FlxText;
 	private var carTimer:Int;
 	private var timer_min:Int = 10;
-	private var timer_max:Int = 200;
+	private var timer_max:Int = 92;
 	
 	private var fuzzy:FuzzyDriver = new FuzzyDriver();
 	
-	private var carCount = [0, 0, 0, 0];
+	private var carCount = [1, 1, 1, 1]; //up,down,right,left
 	//private var cars:FlxGroup;
 	
 	override public function create():Void {
 		//cars = new FlxGroup();
-		fuzzy.testFuzzy();
 		FlxG.camera.bgColor = 0xFF00CE00;
 		carTimer = Utils.getRandom(timer_min, timer_max);
 		txt = new FlxText();
@@ -117,13 +116,16 @@ class MenuState extends FlxState {
 		
 		for (car in cars) {
 			FlxG.overlap(car, stopAreas, carCheckStop);
-			FlxG.collide(cars, car, carCarCheck);
+			//FlxG.collide(cars, car, carCarCheck);
 			//FlxG.collide(car, stopAreas, carCheckStop)
 			if (!(car.inWorldBounds())) {
-				car.destroy();
+				//car.destroy();
 				updateCarCount(car);
 			}
 		}
+		
+		fuzzy.fuzzy(carCount[2] + carCount[3], carCount[0] + carCount[1]);
+		
 		super.update();
 	}
 	
@@ -135,6 +137,7 @@ class MenuState extends FlxState {
 				case RIGHT:	carCount[2]--;
 				case LEFT:	carCount[3]--;
 			}
+			car.destroy();
 			trace(carCount);
 		}
 	}
