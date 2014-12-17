@@ -31,8 +31,8 @@ class MenuState extends FlxState {
 	public var txt:FlxText;
 	public var counts:FlxText;
 	private var carTimer:Int;
-	private var timer_min:Int = 10;
-	private var timer_max:Int = 60;
+	private var timer_min:Int = 70;
+	private var timer_max:Int = 120;
 	
 	private var fuzzy:FuzzyDriver = new FuzzyDriver();
 	
@@ -121,6 +121,8 @@ class MenuState extends FlxState {
 		}
 		
 		for (car in cars) {
+			//FlxG.overlap(car, stopAreas, carCheckStop);
+			car.touchedStoper = true;
 			FlxG.overlap(car, stopAreas, carCheckStop);
 			FlxG.overlap(cars, car, carCarCheck);
 			//FlxG.collide(car, stopAreas, carCheckStop)
@@ -133,8 +135,10 @@ class MenuState extends FlxState {
 		var times = fuzzy.fuzzy(carCount[2] + carCount[3], carCount[0] + carCount[1]);
 		
 		for (l in lights) {
-			l.setGreenLight(Std.int(times[0])*20);
-			l.setRedLight(Std.int(times[1])*20);
+			if (!(getLightState(0) == GREEN && getLightState(1) == GREEN)) {
+				l.setGreenLight(Std.int(times[0])*20);
+				l.setRedLight(Std.int(times[1]) * 20);
+			}
 		}
 		syncLights();
 		super.update();
@@ -142,8 +146,8 @@ class MenuState extends FlxState {
 	
 	function syncLights() {
 		if (getLightState(0) == GREEN && getLightState(1) == GREEN) {
-			lights.members[0].currentState == ORANGE;
-			lights.members[2].currentState == ORANGE;
+			lights.members[0].setGreenLight(0);
+			lights.members[2].setGreenLight(0);
 		}
 	}
 	
@@ -160,10 +164,15 @@ class MenuState extends FlxState {
 		}
 	}
 	
-	function carCarCheck(c:Car,car:Car) {
+	function carCarCheck(c:Car, car:Car) {
+		c.touchedStoper = true;
+		car.touchedStoper = true;
 		if (c.direction == car.direction) {
 			c.stop();
-		} 
+		}
+		else if (c.touchedStoper) {
+			c.start();
+		}
 		else {
 			c.start();
 		}
@@ -178,7 +187,7 @@ class MenuState extends FlxState {
 	}
 	
 	private function carCheckStop(C:Car, S:StopArea) {
-		C.touchedStoper = true;
+		//C.touchedStoper = true;
 		if (C.alive && C.exists && C.touchedStoper) {
 			switch(C.direction) {
 				case UP:	checkLightForCar(C, 0);
