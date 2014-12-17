@@ -156,12 +156,13 @@ class FuzzyDriver
 		var fGreen = [ uK, uS, uD ];
 		var fRed = [ uKred, uSred, uDred ];
 		
-		defuzzy(fGreen, fRed, zbiorCzas);
+		return defuzzy(fGreen, fRed, zbiorCzas);
 	}//1600??
 	
 	private function defuzzy(fuzzedGreen:Dynamic,fuzzedRed:Dynamic,zCzas:Dynamic ) {
 		//TODO DZISIAJ!!!!!!!!!!!!!!!!!!!!!!!1111111111111111111oneoneoneoneoneoenoneoneo
 		//DOBRA< DOBRA!
+		//CHYBA DONE
 		var uLiGreen:Array<Dynamic> = new Array<Dynamic>();
 		var uLiRed:Array<Dynamic> = new Array<Dynamic>();
 		var uLiGreen_A:Array<Dynamic> = new Array<Dynamic>();
@@ -202,14 +203,7 @@ class FuzzyDriver
 		}
 		returnValues.push(up / down);
 		
-		/*trace("ZCZAS " + zCzas[0]);
-		trace("GREEN " + uLiGreen_A);
-		trace("UNFUZZ GREEN: " + (up / down) );*/
-		
-		trace(returnValues);
-		
-		
-		//trace("RED   " + uLiRed_A);
+		return returnValues;
 	}
 	
 	//MIN FOR FUZZYFICATION

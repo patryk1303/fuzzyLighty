@@ -42,6 +42,8 @@ class Car extends FlxSprite
 			case DOWN:	mA = angle = 180;
 		}
 		FlxAngle.rotatePoint(0, speed, 0, 0, mA, velocity);
+		if (speed < maxSpeed)
+			start();
 		super.update();
 	}
 	

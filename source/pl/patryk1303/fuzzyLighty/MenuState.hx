@@ -29,9 +29,10 @@ class MenuState extends FlxState {
 	public var emmiters = new FlxTypedGroup<Emmiter>();
 	public var road:Road;
 	public var txt:FlxText;
+	public var counts:FlxText;
 	private var carTimer:Int;
 	private var timer_min:Int = 10;
-	private var timer_max:Int = 155;
+	private var timer_max:Int = 60;
 	
 	private var fuzzy:FuzzyDriver = new FuzzyDriver();
 	
@@ -43,6 +44,7 @@ class MenuState extends FlxState {
 		FlxG.camera.bgColor = 0xFF00CE00;
 		carTimer = Utils.getRandom(timer_min, timer_max);
 		txt = new FlxText();
+		counts = new FlxText(0, 42);
 		road  = new Road(0,0);
 		road.updateHitbox();
 		var i = 0;
@@ -87,6 +89,7 @@ class MenuState extends FlxState {
 		add(emmiters);
 		#if debug
 		add(txt);
+		add(counts);
 		#end
 		super.create();
 	}
@@ -102,6 +105,9 @@ class MenuState extends FlxState {
 		carTimer--;
 		
 		txt.text = "timer = " + carTimer;
+		counts.text =  "main: " + (carCount[2] + carCount[3]) + "\nsecondary:" + (carCount[0] + carCount[1]);
+		counts.text += "\nmainL green: " + lights.members[0].lightTimes[3] + "\nmainL red: " + lights.members[0].lightTimes[1];
+		counts.text += "\nsecL green: " + lights.members[1].lightTimes[3] + "\nsecL red: " + lights.members[1].lightTimes[1];
 		
 		if (carTimer <= 0) {
 			carTimer = Utils.getRandom(timer_min, timer_max);
@@ -116,7 +122,7 @@ class MenuState extends FlxState {
 		
 		for (car in cars) {
 			FlxG.overlap(car, stopAreas, carCheckStop);
-			FlxG.collide(cars, car, carCarCheck);
+			//FlxG.collide(cars, car, carCarCheck);
 			//FlxG.collide(car, stopAreas, carCheckStop)
 			if (!(car.inWorldBounds())) {
 				//car.destroy();
@@ -124,7 +130,12 @@ class MenuState extends FlxState {
 			}
 		}
 		
-		fuzzy.fuzzy(carCount[2] + carCount[3], carCount[0] + carCount[1]);
+		var times = fuzzy.fuzzy(carCount[2] + carCount[3], carCount[0] + carCount[1]);
+		
+		for (l in lights) {
+			l.setGreenLight(Std.int(times[0])*20);
+			l.setRedLight(Std.int(times[1])*20);
+		}
 		
 		super.update();
 	}

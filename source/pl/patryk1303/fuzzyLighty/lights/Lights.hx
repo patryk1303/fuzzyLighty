@@ -35,6 +35,13 @@ class Lights extends FlxSprite {
 		this.angle = rotate;
 	}
 	
+	public function setGreenLight(time:Int) {
+		lightTimes[3] = time;
+	}
+	public function setRedLight(time:Int) {
+		lightTimes[1] = time;
+	}
+	
 	public override function draw() {
 		switch(currentState) {
 			case GREEN: animation.play("green");
