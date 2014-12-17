@@ -192,6 +192,8 @@ class FuzzyDriver
 			uLiRed_A.push(Math.max(Math.max(uLiRed[0][i], uLiRed[1][i]), uLiRed[2][i]));
 		}
 		
+		
+		//TODO lustrzane odbicie zbioru - K,D na krancach
 		//GREEN
 		for (i in 0...31) {
 			up += uLiGreen_A[i] * zCzas[0][i];
