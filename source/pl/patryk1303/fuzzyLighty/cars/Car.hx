@@ -13,14 +13,13 @@ class Car extends FlxSprite
 {
 	public var direction:CarDirection;
 	var mA:Float = 0;
-	var maxSpeed:Float = 80;
+	var maxSpeed:Float = 122;
 	var speed:Float;
 	public var touchedStoper:Bool = false;
 	
 	public function new(?X:Float = 0, ?Y:Float = 0, ?_dir:CarDirection, ?_color:Int, ?_scale:Float = 0.3) 
 	{
 		super(X, Y);
-		maxSpeed = Utils.getRandom(70, 170);
 		speed = maxSpeed;
 		if (_dir == null)
 			direction = CarDirection.UP;

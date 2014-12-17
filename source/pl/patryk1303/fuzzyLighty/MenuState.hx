@@ -12,6 +12,7 @@ import flixel.text.FlxText;
 import flixel.util.FlxMath;
 import pl.patryk1303.fuzzyLighty.road.Road;
 import pl.patryk1303.fuzzyLighty.cars.Car;
+import pl.patryk1303.fuzzyLighty.cars.CarDetector;
 import source.pl.patryk1303.fuzzyLighty.enums.LightStates;
 import pl.patryk1303.fuzzyLighty.enums.CarDirection;
 import pl.patryk1303.fuzzyLighty.road.StopArea;
@@ -25,6 +26,7 @@ class MenuState extends FlxState {
 	
 	public var lights = new FlxTypedGroup<Lights>();
 	public var cars = new FlxTypedGroup<Car>();
+	public var carsDetectors = new FlxTypedGroup<CarDetector>();
 	public var stopAreas = new FlxTypedGroup<StopArea>();
 	public var emmiters = new FlxTypedGroup<Emmiter>();
 	public var road:Road;
@@ -81,6 +83,9 @@ class MenuState extends FlxState {
 		for (car in cars) {
 			//car.scale.set(0.3, 0.3);
 			//car.updateHitbox();
+			add(car);
+		}
+		for (car in carsDetectors) {
 			add(car);
 		}
 		for (stopPoint in stopAreas) {
@@ -202,9 +207,9 @@ class MenuState extends FlxState {
 	private function checkLightForCar(C:Car, id:Int) {
 		switch (getLightState(id)) {
 			case GREEN: C.start();
-			case ORANGE: C.orange_stopping();
+			case ORANGE: C.stop();
 			case RED: C.stop();
-			case RED_ORANGE: C.orange_starting();
+			case RED_ORANGE: C.stop();
 		}
 	}
 	
@@ -216,12 +221,16 @@ class MenuState extends FlxState {
 	function emmitCar(_dir:CarDirection) {
 		switch(_dir) {
 			case UP:	cars.add(new Car(road.x + road.originPoints[0][0], road.y + road.originPoints[0][1], road.originPoints[0][2], 1));
+						carsDetectors.add(new CarDetector(road.x + road.originPoints[0][0], road.y + road.originPoints[0][1] + 15, false));
 						carCount[0]++;
 			case DOWN:	cars.add(new Car(road.x + road.originPoints[1][0], road.y + road.originPoints[1][1], road.originPoints[1][2]));
+						carsDetectors.add(new CarDetector(road.x + road.originPoints[15][0], road.y + road.originPoints[1][1] - 15, false));
 						carCount[1]++;
 			case RIGHT:	cars.add(new Car(road.x + road.originPoints[2][0], road.y + road.originPoints[2][1], road.originPoints[2][2]));
+						carsDetectors.add(new CarDetector(road.x + road.originPoints[2][0], road.y + road.originPoints[2][1], true));
 						carCount[2]++;
 			case LEFT:	cars.add(new Car(road.x + road.originPoints[3][0], road.y + road.originPoints[3][1], road.originPoints[3][2], 1));
+						carsDetectors.add(new CarDetector(road.x + road.originPoints[3][0], road.y + road.originPoints[3][1] + 15, true));
 						carCount[3]++;
 		}
 		#if debug

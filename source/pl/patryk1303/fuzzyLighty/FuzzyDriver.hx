@@ -145,13 +145,19 @@ class FuzzyDriver
 		ULi.push(fuzzyMin(uCPd,uCSd));
 		
 		//swiatla zielone
+		//uK = ULi[0];
+		//uS = Math.max(Math.max(Math.max(Math.max(ULi[1], ULi[2]), ULi[3]), ULi[4]), ULi[5]);
+		//uD = Math.max(Math.max(ULi[6], ULi[7]), ULi[8]);
 		uK = ULi[0];
-		uS = Math.max(Math.max(Math.max(Math.max(ULi[1], ULi[2]), ULi[3]), ULi[4]), ULi[5]);
-		uD = Math.max(Math.max(ULi[6], ULi[7]), ULi[8]);
+		uS = Math.max(Math.max(Math.max(Math.max(ULi[1], ULi[2]), ULi[3]), ULi[4]), ULi[6]);
+		uD = Math.max(Math.max(ULi[5], ULi[7]), ULi[8]);
 		//swiatla czerwone
-		uKred = Math.max(ULi[2], ULi[6]);
-		uSred = Math.max(Math.max(Math.max(Math.max(Math.max(ULi[0], ULi[3]), ULi[4]), ULi[5]), ULi[7]),ULi[8]);
-		uDred = ULi[1];
+		//uKred = Math.max(ULi[2], ULi[6]);
+		//uSred = Math.max(Math.max(Math.max(Math.max(Math.max(ULi[0], ULi[3]), ULi[4]), ULi[5]), ULi[7]),ULi[8]);
+		//uDred = ULi[1];
+		uKred = ULi[0];
+		uSred = Math.max(Math.max(Math.max(Math.max(ULi[1], ULi[2]), ULi[3]), ULi[4]), ULi[6]);
+		uDred = Math.max(Math.max(ULi[5], ULi[7]), ULi[8]);
 		
 		var fGreen = [ uK, uS, uD ];
 		var fRed = [ uKred, uSred, uDred ];
