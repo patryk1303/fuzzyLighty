@@ -2,7 +2,7 @@ package pl.patryk1303.fuzzyLighty;
 
 /**
  * ...
- * @author Patryk Wychowaniec
+ * @author 
  */
 class FuzzyDriver
 {
@@ -160,9 +160,6 @@ class FuzzyDriver
 	}//1600??
 	
 	private function defuzzy(fuzzedGreen:Dynamic,fuzzedRed:Dynamic,zCzas:Dynamic ) {
-		//TODO DZISIAJ!!!!!!!!!!!!!!!!!!!!!!!1111111111111111111oneoneoneoneoneoenoneoneo
-		//DOBRA< DOBRA!
-		//CHYBA DONE
 		var uLiGreen:Array<Dynamic> = new Array<Dynamic>();
 		var uLiRed:Array<Dynamic> = new Array<Dynamic>();
 		var uLiGreen_A:Array<Dynamic> = new Array<Dynamic>();
@@ -202,6 +199,8 @@ class FuzzyDriver
 			down += uLiRed_A[i];
 		}
 		returnValues.push(up / down);
+		
+		trace(returnValues);
 		
 		return returnValues;
 	}

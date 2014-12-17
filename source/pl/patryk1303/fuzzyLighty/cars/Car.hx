@@ -20,6 +20,7 @@ class Car extends FlxSprite
 	public function new(?X:Float = 0, ?Y:Float = 0, ?_dir:CarDirection, ?_color:Int, ?_scale:Float = 0.3) 
 	{
 		super(X, Y);
+		maxSpeed = Utils.getRandom(70, 160);
 		speed = maxSpeed;
 		if (_dir == null)
 			direction = CarDirection.UP;

@@ -36,7 +36,7 @@ class MenuState extends FlxState {
 	
 	private var fuzzy:FuzzyDriver = new FuzzyDriver();
 	
-	private var carCount = [1, 1, 1, 1]; //up,down,right,left
+	private var carCount = [0,0,0,0]; //up,down,right,left
 	//private var cars:FlxGroup;
 	
 	override public function create():Void {
@@ -54,11 +54,11 @@ class MenuState extends FlxState {
 			lights.add(new Lights(road.x + point[0], road.y + point[1], point[2], start));
 			++i;
 		}
-		cars.add(new Car(road.x + road.originPoints[0][0], road.y + road.originPoints[0][1], road.originPoints[0][2], 1));
+		/*cars.add(new Car(road.x + road.originPoints[0][0], road.y + road.originPoints[0][1], road.originPoints[0][2], 1));
 		cars.add(new Car(road.x + road.originPoints[1][0], road.y + road.originPoints[1][1], road.originPoints[1][2]));
 		cars.add(new Car(road.x + road.originPoints[2][0], road.y + road.originPoints[2][1], road.originPoints[2][2]));
 		cars.add(new Car(road.x + road.originPoints[3][0], road.y + road.originPoints[3][1], road.originPoints[3][2], 1));
-		
+		*/
 		/*emmiters.add(new Emmiter(road.x + road.originPoints[0][0] + 4, road.y + road.originPoints[0][1] - 15, road.originPoints[0][2]));
 		emmiters.add(new Emmiter(road.x + road.originPoints[1][0] + 7, road.y + road.originPoints[1][1] + 8, road.originPoints[1][2]));
 		emmiters.add(new Emmiter(road.x + road.originPoints[2][0] + 4, road.y + road.originPoints[2][1] + 8, road.originPoints[2][2]));
@@ -122,7 +122,7 @@ class MenuState extends FlxState {
 		
 		for (car in cars) {
 			FlxG.overlap(car, stopAreas, carCheckStop);
-			//FlxG.collide(cars, car, carCarCheck);
+			FlxG.overlap(cars, car, carCarCheck);
 			//FlxG.collide(car, stopAreas, carCheckStop)
 			if (!(car.inWorldBounds())) {
 				//car.destroy();
@@ -136,8 +136,15 @@ class MenuState extends FlxState {
 			l.setGreenLight(Std.int(times[0])*20);
 			l.setRedLight(Std.int(times[1])*20);
 		}
-		
+		syncLights();
 		super.update();
+	}
+	
+	function syncLights() {
+		if (getLightState(0) == GREEN && getLightState(1) == GREEN) {
+			lights.members[0].currentState == ORANGE;
+			lights.members[2].currentState == ORANGE;
+		}
 	}
 	
 	function updateCarCount(car:Car) {
@@ -156,6 +163,9 @@ class MenuState extends FlxState {
 	function carCarCheck(c:Car,car:Car) {
 		if (c.direction == car.direction) {
 			c.stop();
+		} 
+		else {
+			c.start();
 		}
 		if (c.alive && c.exists && car.alive && car.exists) {
 			switch(car.direction) {
