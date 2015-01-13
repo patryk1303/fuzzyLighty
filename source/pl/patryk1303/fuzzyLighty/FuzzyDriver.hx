@@ -170,12 +170,18 @@ class FuzzyDriver
 		var uLiRed:Array<Dynamic> = new Array<Dynamic>();
 		var uLiGreen_A:Array<Dynamic> = new Array<Dynamic>();
 		var uLiRed_A:Array<Dynamic> = new Array<Dynamic>();
+		var uLiGreen_B:Array<Dynamic> = new Array<Dynamic>();
+		var uLiRed_B:Array<Dynamic> = new Array<Dynamic>();
+		var zCzas_A:Array<Dynamic> = new Array<Dynamic>();
 		var up:Dynamic = 0.0;
 		var down:Dynamic = 0.0;
 		var returnValues:Array<Dynamic> = new Array<Dynamic>();
+		var uTemp:Array<Dynamic> = new Array<Dynamic>();
 		
 		uLiGreen = initZbior(3, uLiGreen);
 		uLiRed = initZbior(3, uLiRed);
+		uLiGreen_B = initZbior(3, uLiGreen_B);
+		uLiRed_B = initZbior(3, uLiRed_B);
 		
 		for (i in 0...31) {
 			uLiGreen[0].push(Math.min(fuzzedGreen[0], zCzas[1][i])); //KROTKO
@@ -186,14 +192,43 @@ class FuzzyDriver
 			uLiRed[1].push(Math.min(fuzzedRed[1], zCzas[2][i])); //SREDNIO
 			uLiRed[2].push(Math.min(fuzzedRed[2], zCzas[3][i])); //DLUGO
 		}
+		//TODO lustrzane odbicie zbioru - K,D na krancach
+		uLiGreen_B[0] = mirrorU(uLiGreen[0]);
+		uLiGreen_B[1] = mirrorU(uLiGreen[1]);
+		uLiGreen_B[2] = mirrorU(uLiGreen[2], false);
+		uLiRed_B[0] = mirrorU(uLiRed[0]);
+		uLiRed_B[1] = mirrorU(uLiRed[1]);
+		uLiRed_B[2] = mirrorU(uLiRed[2], false);
+		zCzas_A[0] = mirrorU(zCzas[0]);
+		//trace(zCzas_A[0]);
 		
-		for (i in 0...31) {
+		for (i in 0...62) {
+			uLiGreen_A.push(Math.max(Math.max(uLiGreen_B[0][i], uLiGreen_B[1][i]), uLiGreen_B[2][i]));
+			uLiRed_A.push(Math.max(Math.max(uLiRed_B[0][i], uLiRed_B[1][i]), uLiRed_B[2][i]));
+		}
+		//trace(uLiGreen_A);
+		
+		//GREEN
+		for (i in 0...62) {
+			//up += uLiGreen_A[i] * zCzas_A[0][i];
+			up += uLiGreen_A[i] * i;
+			down += uLiGreen_A[i];
+		}
+		returnValues.push(up / down);
+		
+		//RED
+		for (i in 0...62) {
+			//up += uLiRed_A[i] * zCzas_A[0][i];
+			up += uLiRed_A[i] * i;
+			down += uLiRed_A[i];
+		}
+		returnValues.push(up / down);
+		
+		/*for (i in 0...31) {
 			uLiGreen_A.push(Math.max(Math.max(uLiGreen[0][i], uLiGreen[1][i]), uLiGreen[2][i]));
 			uLiRed_A.push(Math.max(Math.max(uLiRed[0][i], uLiRed[1][i]), uLiRed[2][i]));
 		}
 		
-		
-		//TODO lustrzane odbicie zbioru - K,D na krancach
 		//GREEN
 		for (i in 0...31) {
 			up += uLiGreen_A[i] * zCzas[0][i];
@@ -206,11 +241,28 @@ class FuzzyDriver
 			up += uLiRed_A[i] * zCzas[0][i];
 			down += uLiRed_A[i];
 		}
-		returnValues.push(up / down);
+		returnValues.push(up / down);*/
 		
-		trace(returnValues);
+		//trace(returnValues);
 		
 		return returnValues;
+	}
+	
+	function mirrorU(array:Array<Dynamic>,?isStartL:Bool=true) {
+		var uTemp:Array<Dynamic> = new Array<Dynamic>();
+		var ret:Array<Dynamic> = new Array<Dynamic>();
+		uTemp = array;
+		if (isStartL)	uTemp.reverse();
+		for (i in 0...31) {
+			ret.push(uTemp[i]);
+		}
+		uTemp.reverse();
+		for (i in 0...31) {
+			ret.push(uTemp[i]);
+		}
+		if (!isStartL)	uTemp.reverse();
+		//trace(ret);
+		return ret;
 	}
 	
 	//MIN FOR FUZZYFICATION

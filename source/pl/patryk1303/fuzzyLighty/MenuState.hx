@@ -33,8 +33,8 @@ class MenuState extends FlxState {
 	public var txt:FlxText;
 	public var counts:FlxText;
 	private var carTimer:Int;
-	private var timer_min:Int = 70;
-	private var timer_max:Int = 120;
+	private var timer_min:Int = 7;
+	private var timer_max:Int = 12;
 	
 	private var fuzzy:FuzzyDriver = new FuzzyDriver();
 	private var fuzzy1:FuzzyDriver = new FuzzyDriver();
@@ -226,7 +226,7 @@ class MenuState extends FlxState {
 						carsDetectors.add(new CarDetector(road.x + road.originPoints[0][0], road.y + road.originPoints[0][1] + 15, false));
 						carCount[0]++;
 			case DOWN:	cars.add(new Car(road.x + road.originPoints[1][0], road.y + road.originPoints[1][1], road.originPoints[1][2]));
-						carsDetectors.add(new CarDetector(road.x + road.originPoints[15][0], road.y + road.originPoints[1][1] - 15, false));
+						carsDetectors.add(new CarDetector(road.x + road.originPoints[1][0], road.y + road.originPoints[1][1] - 15, false));
 						carCount[1]++;
 			case RIGHT:	cars.add(new Car(road.x + road.originPoints[2][0], road.y + road.originPoints[2][1], road.originPoints[2][2]));
 						carsDetectors.add(new CarDetector(road.x + road.originPoints[2][0], road.y + road.originPoints[2][1], true));
