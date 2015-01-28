@@ -192,7 +192,7 @@ class FuzzyDriver
 			uLiRed[1].push(Math.min(fuzzedRed[1], zCzas[2][i])); //SREDNIO
 			uLiRed[2].push(Math.min(fuzzedRed[2], zCzas[3][i])); //DLUGO
 		}
-		//TODO lustrzane odbicie zbioru - K,D na krancach
+		/*//TODO lustrzane odbicie zbioru - K,D na krancach
 		uLiGreen_B[0] = mirrorU(uLiGreen[0]);
 		uLiGreen_B[1] = mirrorU(uLiGreen[1]);
 		uLiGreen_B[2] = mirrorU(uLiGreen[2], false);
@@ -222,9 +222,11 @@ class FuzzyDriver
 			up += uLiRed_A[i] * i;
 			down += uLiRed_A[i];
 		}
-		returnValues.push(up / down);
+		returnValues.push(up / down);*/
 		
-		/*for (i in 0...31) {
+		//WITHOUT MIRRORING
+		
+		for (i in 0...31) {
 			uLiGreen_A.push(Math.max(Math.max(uLiGreen[0][i], uLiGreen[1][i]), uLiGreen[2][i]));
 			uLiRed_A.push(Math.max(Math.max(uLiRed[0][i], uLiRed[1][i]), uLiRed[2][i]));
 		}
@@ -241,7 +243,7 @@ class FuzzyDriver
 			up += uLiRed_A[i] * zCzas[0][i];
 			down += uLiRed_A[i];
 		}
-		returnValues.push(up / down);*/
+		returnValues.push(up / down);
 		
 		//trace(returnValues);
 		
